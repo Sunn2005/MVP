@@ -3,7 +3,6 @@ package com.example.mvp_image.view;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         //khởi tạo presenter
         presenter = new MainPresenter(this);
 
@@ -39,12 +37,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         viewBinding.rcvImageList.setLayoutManager(gridLayoutManager);
         viewBinding.rcvImageList.setAdapter(imageAdapter);
 
-        viewBinding.btThem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddImageActivity.class);
-                startActivity(intent);
-            }
+        viewBinding.btThem.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddImageActivity.class);
+            startActivity(intent);
         });
 
     }

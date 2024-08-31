@@ -1,8 +1,6 @@
 package com.example.mvp_image.view;
 
 
-import static android.os.Build.VERSION_CODES.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mvp_image.R;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = View.inflate(mContext, R., null);
+       View view = View.inflate(mContext, R.layout.item_row , null);
         return new ImageViewHolder(view);
     }
 
@@ -49,7 +49,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.)
+            image = itemView.findViewById(R.id.image);
         }
     }
 }

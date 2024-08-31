@@ -8,9 +8,10 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mvp_image.databinding.ActivityAddImageActicityBinding;
+import com.example.mvp_image.presenter.AddMainPresenter;
 import com.example.mvp_image.presenter.IAddMainPresenter;
 
-public class AddImageActivity extends AppCompatActivity {
+public class AddImageActivity extends AppCompatActivity implements IAddImageAcitivity{
     private static final String TAG = "AddImageActivity";
     private ActivityAddImageActicityBinding addViewBinding;
     private IAddMainPresenter addPresenter;
@@ -22,6 +23,7 @@ public class AddImageActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         addViewBinding = ActivityAddImageActicityBinding.inflate(getLayoutInflater());
         setContentView(addViewBinding.getRoot());
+        addPresenter = new AddMainPresenter(this);
 
         setUpViewEvent();
 
@@ -35,9 +37,13 @@ public class AddImageActivity extends AppCompatActivity {
     private void onButtonCliked() {
         String link = addViewBinding.edLink.getText().toString();
         Log.d(TAG, "onButtonClicked: " + link);
-        Bitmap bitmap = addPresenter.getImage(link);
+        addPresenter.getImage(link);
+        finish();
+    }
+
+    @Override
+    public void getImage(Bitmap bitmap) {
         MainActivity.bitmapArrayList.add(bitmap);
         MainActivity.imageAdapter.notifyDataSetChanged();
     }
-
 }
